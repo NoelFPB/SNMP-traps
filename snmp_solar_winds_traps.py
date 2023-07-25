@@ -2,15 +2,20 @@ from pysnmp.hlapi import *
 from pysnmp.hlapi import OctetString, SnmpEngine, CommunityData, UdpTransportTarget, ContextData, sendNotification, NotificationType, ObjectIdentity
 
 
-AlertID = 'Your Alert ID'
-AlertMessage = 'Your Alert Message'
-Day = 'Your Day'
-Time = 'Your Time'
-AlertName = 'Your Alert Name'
-NodeID = 'Your Node ID'
-Caption = 'Your Caption'
-Severity = 'Your Severity'
+# assign values to variables
+AlertID = '127'
+AlertMessage = '_Interface_DOWN was triggered.'
+Day = '7/17/2023'
+Time = '9:51:11 AM'
+AlertName = '_Interface_DOWN'
+NodeID = '1N-SW-INT-12732'
+Caption = 'et-3/0/2 · Internal NAP - Hacia ON-NAP-03-MX10008 et-0/0/3'
+Severity = 'Critical'
 
+# define the template with placeholders for variable substitution
+template = "[AlertID] {AlertID} [AlertMessage] {AlertMessage} [Day] {Day} [Time] {Time} [AlertName] {AlertName} [NodeID] {NodeID} [Caption] {Caption} [Severity] {Severity}"
+message = template.format(AlertID=AlertID, AlertMessage=AlertMessage, Day=Day, Time=Time, AlertName=AlertName, NodeID=NodeID, Caption=Caption, Severity=Severity)
+print(message)
 
 errorIndication, errorStatus, errorIndex, varBinds = next(
     sendNotification(
@@ -32,7 +37,7 @@ errorIndication, errorStatus, errorIndex, varBinds = next(
             ('1.3.6.1.4.1.11307.10.5', OctetString(hexValue='65742d332f302f3220b720496e7465726e616c204e4150202d204861636961204f4e2d4e')),
             ('1.3.6.1.4.1.11307.10.6', OctetString('Interface')),
             ('1.3.6.1.4.1.11307.10.7', OctetString(str(NodeID))),
-            ('1.3.6.1.4.1.11307.10.1', OctetString(hexValue='5b416c65727449445d20313237205b416c6572744d6573736167655d205f496e74657266'))
+            ('1.3.6.1.4.1.11307.10.1', OctetString(str(message)))
         )
     )
 )
