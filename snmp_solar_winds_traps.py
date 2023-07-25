@@ -25,16 +25,13 @@ errorIndication, errorStatus, errorIndex, varBinds = next(
         ContextData(),
         'trap',
         NotificationType(
-            #ObjectIdentity('1.3.6.1.6.3.1.1.4.1.0'),
-            #ObjectIdentity('1.3.6.1.2.1.1.3.0'),
-            #ObjectIdentity('1.3.6.1.6.3.1.1.4.3.0')
             ObjectIdentity('1.3.6.1.4.1.11307.10') 
         ).addVarBinds(
             ('1.3.6.1.6.3.1.1.4.3.0', ObjectIdentifier('1.3.6.1.4.1.11307')),
-            ('1.3.6.1.4.1.11307.10.2', OctetString(hexValue='65742d332f302f3220b720496e7465726e616c204e4150202d204861636961204f4e2d4e')),
+            ('1.3.6.1.4.1.11307.10.2', OctetString(str(Caption))),
             ('1.3.6.1.4.1.11307.10.3', IpAddress('10.12.28.1')),
             ('1.3.6.1.4.1.11307.10.4', OctetString('3')),
-            ('1.3.6.1.4.1.11307.10.5', OctetString(hexValue='65742d332f302f3220b720496e7465726e616c204e4150202d204861636961204f4e2d4e')),
+            ('1.3.6.1.4.1.11307.10.5', OctetString(str(Caption))),
             ('1.3.6.1.4.1.11307.10.6', OctetString('Interface')),
             ('1.3.6.1.4.1.11307.10.7', OctetString(str(NodeID))),
             ('1.3.6.1.4.1.11307.10.1', OctetString(str(message)))
